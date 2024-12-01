@@ -30,9 +30,9 @@ export const RestuarantInfoCard = ({restuarant = {}}) => {
     photos = [
       'https://logowik.com/content/uploads/images/restaurant9491.logowik.com.webp',
     ],
-    address = 'Beverly Hills',
+    vicinity = 'Beverly Hills',
     openingHours = true,
-    rating = 4,
+    rating = 3,
     isOpenNow = true,
     isClosedTemporarily = true,
   } = restuarant;
@@ -47,11 +47,11 @@ export const RestuarantInfoCard = ({restuarant = {}}) => {
         source={{uri: photos[0]}}
       />
       <Info>
-        <Text>akinde</Text>
+        <Text>{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((_, index) => (
+              <SvgXml key={index} xml={star} width={20} height={20} />
             ))}
           </Rating>
           <SectionEnd>
@@ -69,7 +69,7 @@ export const RestuarantInfoCard = ({restuarant = {}}) => {
             </Spacer>
           </SectionEnd>
         </Section>
-        <Address>{address}</Address>
+        <Address>{vicinity}</Address>
       </Info>
     </RestuarantCard>
   );
