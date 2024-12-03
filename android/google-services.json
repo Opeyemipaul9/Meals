@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "523296395980",
+    "firebase_url": "https://meals-fb751-default-rtdb.firebaseio.com",
+    "project_id": "meals-fb751",
+    "storage_bucket": "meals-fb751.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523296395980:android:96583e8de04bb2e6a62869",
+        "android_client_info": {
+          "package_name": "com.meals"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYxRrawqJdnMZT1lWMdNcOFMPlbRsjMu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

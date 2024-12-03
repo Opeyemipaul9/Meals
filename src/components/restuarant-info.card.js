@@ -45,7 +45,7 @@ export const RestuarantInfoCard = ({restaurant = {}}) => {
         />
       </View>
       <Info>
-        <Text>{name}</Text>
+        <Text style={{fontFamily: 'Lato'}}>{name}</Text>
         <Section>
           <Rating>
             {ratingArray.map((_, index) => (

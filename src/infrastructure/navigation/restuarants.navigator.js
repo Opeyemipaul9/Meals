@@ -13,10 +13,7 @@ export const RestaurantsNavigator = () => {
         headerShown: false,
         ...TransitionPresets.FadeFromBottomAndroid,
       }}>
-      <RestaurantStack.Screen
-        name="Restaurants"
-        component={RestuarantsScreen}
-      />
+      <RestaurantStack.Screen name="Index" component={RestuarantsScreen} />
       <RestaurantStack.Screen
         name="RestaurantDetail"
         component={RestaurantDetailScreen}
