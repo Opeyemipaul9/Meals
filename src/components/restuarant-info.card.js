@@ -4,7 +4,8 @@ import {SvgXml} from 'react-native-svg';
 import star from '../../assets/star';
 import open from '../../assets/open';
 import {Spacer} from '../components/spacer/spacer-components';
-import {Test} from '../components/typography/text.component';
+import {View} from 'react-native';
+import {Favourite} from './favorites/favorites.components';
 import {
   Icon,
   RestuarantCard,
@@ -16,14 +17,7 @@ import {
   Address,
 } from './restuarant-info-card.styles';
 
-// const Title = styled(Text)`
-//   padding: ${props => props.theme.space[3]};
-//   color: ${props => props.theme.colors.ui.primary};
-//   font-family: 'Lato-Regular';
-//   font-size: ${props => props.theme.fontSizes.body};
-// `;
-
-export const RestuarantInfoCard = ({restuarant = {}}) => {
+export const RestuarantInfoCard = ({restaurant = {}}) => {
   const {
     name = 'Hanjo Place',
     icons = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
@@ -35,23 +29,32 @@ export const RestuarantInfoCard = ({restuarant = {}}) => {
     rating = 3,
     isOpenNow = true,
     isClosedTemporarily = true,
-  } = restuarant;
+    placeId,
+  } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
     <RestuarantCard elevation={5}>
-      <RestuarantCardCover
-        key={name}
-        style={styles.cover}
-        source={{uri: photos[0]}}
-      />
+      <View>
+        <Favourite restaurant={restaurant} />
+        <RestuarantCardCover
+          key={name}
+          style={styles.cover}
+          source={{uri: photos[0]}}
+        />
+      </View>
       <Info>
         <Text>{name}</Text>
         <Section>
           <Rating>
             {ratingArray.map((_, index) => (
-              <SvgXml key={index} xml={star} width={20} height={20} />
+              <SvgXml
+                key={`star-${placeId}-${index}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <SectionEnd>
