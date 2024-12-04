@@ -5,8 +5,8 @@ import {RestaurantsContextProvider} from './src/services/restuarants/restuarants
 import {LocationContextProvider} from './src/services/location/location.context';
 import {Navigation} from './src/infrastructure/navigation';
 import {FavouritesContextProvider} from './src/services/favorites/favorites.context';
-import {initializeApp} from '@react-native-firebase/app';
-import auth from '@react-native-firebase/auth';
+import {AuthenticationContextProvider} from './src/services/authentication/authentication.context';
+import {firebase} from '@react-native-firebase/app';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAAmUtiFrYBqQoKHrJNTxUUhEoXKdlvAUI',
@@ -18,44 +18,22 @@ const firebaseConfig = {
   databaseURL: 'https://meals-fb751-default-rtdb.firebaseio.com',
 };
 
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const initializeFirebase = async () => {
-    try {
-      const firebaseInstance = await firebase.initializeApp(firebaseConfig);
-      console.log(firebaseInstance, 'firebaseInstance');
-      // const user = await auth(firebaseInstance).signInWithEmailAndPassword(
-      //   'opeyemi@gmail.com',
-      //   'opeyemi123',
-      // );
-      // setIsAuthenticated(user, true);
-      // console.log('User account created & signed in!');
-    } catch (error) {
-      console.log(error);
-      // if (error.code === 'auth/email-already-in-use') {
-      //   console.log('That email address is already in use!');
-      // }
-
-      // if (error.code === 'auth/invalid-email') {
-      //   console.log('That email address is invalid!');
-      // }
-    }
-  };
-
-  useEffect(() => {
-    initializeFirebase();
-  }, []);
-
   return (
     <ThemeProvider theme={theme}>
-      <FavouritesContextProvider>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation />
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
-      </FavouritesContextProvider>
+      <AuthenticationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
+      </AuthenticationContextProvider>
     </ThemeProvider>
   );
 };
